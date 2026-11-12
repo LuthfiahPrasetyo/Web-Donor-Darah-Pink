@@ -1,3 +1,7 @@
+<?php
+echo "hai";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

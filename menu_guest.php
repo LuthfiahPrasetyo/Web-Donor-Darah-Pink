@@ -9,9 +9,9 @@
 </head>
 <body style="margin: 0px; background-color: #f0eaea;">
 <!-- Header Nih -->
-<nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a class="navbar-brand me-2">
+        <a href="landingpage.php" class="navbar-brand me-2">
           <img
             src="logo3.png"
             height="40"
@@ -29,6 +29,7 @@
                 >DONDARAHYUK</b
               >
             </li>
+            <!--Dropdown lokasi-->
             <li class="nav-item" style="margin-left: 2rem;">
               <div class="dropdown">
                 <button
@@ -47,42 +48,39 @@
                 </ul>
               </div>
             </li>
+            <!--Dropdown tanggal-->
             <li class="nav-item" style="margin-left: 2rem;">
-              <input type="text" class="form-control w-12" id="datepicker1" data-bs-toggle="datepicker" autocomplete="off" placeholder="Search by Date" style="background-color: #f0eaea;">
+              <input type="date" class="form-control" id="datepicker1" style="background-color: #f0eaea; color: #b02424; font-size: 15px;">
             </li>
           </ul>
-        <div class="dropdown">
-                <button
+          <!-- Profile -->
+          <div class="d-flex align-items-center">
+              <div class="dropdown">
+                <img
                   class="btn dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  style="color: #b02424; font-size: 20px;"
-                >
-                  Lokasi
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item">Sleman</a></li>
-                  <li><a class="dropdown-item">Bantul</a></li>
-                  <li><a class="dropdown-item">Gunungkidul</a></li>
+                  src="profil.png"
+                  style="
+                    width: 40px;
+                    background-color: rgb(234, 179, 208);
+                    border-radius: 100%;
+                    outline: whitesmoke solid;
+                    padding: 0px;
+                  " 
+                />
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
+                  <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
+                  <li><a href="register.php" class="dropdown-item">Register</a></li>
                 </ul>
               </div>
-          <!-- Left links -->
-          <div class="d-flex align-items-center">
-            <img
-              src="profil.png"
-              height="40"
-              style="
-                background-color: rgb(234, 179, 208);
-                border-radius: 50%;
-                outline: whitesmoke solid;
-              "
-            />
           </div>
         </div>
       </div>
     </nav>
-
+    <!-- Header Tutup -->
 
     <!--Ini buat kalo udah Donor Darah-->
     <div class="card" style="margin: 20px;">

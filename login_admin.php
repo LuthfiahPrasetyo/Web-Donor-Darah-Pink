@@ -29,32 +29,10 @@
                 >DONDARAHYUK</b
               >
             </li>
-            <!--Dropdown lokasi-->
-            <li class="nav-item" style="margin-left: 2rem;">
-              <div class="dropdown">
-                <button
-                  class="btn dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style="color: #b02424; font-size: 20px;"
-                >
-                  Location
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item">Sleman</a></li>
-                  <li><a class="dropdown-item">Bantul</a></li>
-                  <li><a class="dropdown-item">Gunungkidul</a></li>
-                </ul>
-              </div>
-            </li>
-            <!--Dropdown tanggal-->
-            <li class="nav-item" style="margin-left: 2rem;">
-              <input type="date" class="form-control" id="datepicker1" style="background-color: #f0eaea; color: #b02424; font-size: 15px;">
-            </li>
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
+            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
@@ -63,8 +41,8 @@
                   aria-expanded="false"
                   src="profil.png"
                   style="
-                    width: 40px;
-                    background-color: rgb(234, 179, 208);
+                    width: 50px;
+                    background-color: #b02424;
                     border-radius: 100%;
                     outline: whitesmoke solid;
                     padding: 0px;

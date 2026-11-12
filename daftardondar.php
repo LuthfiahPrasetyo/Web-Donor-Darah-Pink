@@ -11,7 +11,7 @@
 <!-- Header Nih -->
     <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a href="landingpage.php" class="navbar-brand me-2">
+        <a href="menu_guest.php" class="navbar-brand me-2">
           <img
             src="logo3.png"
             height="40"
@@ -29,29 +29,6 @@
                 >DONDARAHYUK</b
               >
             </li>
-            <!--Dropdown lokasi-->
-            <li class="nav-item" style="margin-left: 2rem;">
-              <div class="dropdown">
-                <button
-                  class="btn dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style="color: #b02424; font-size: 20px;"
-                >
-                  Lokasi
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item">Sleman</a></li>
-                  <li><a class="dropdown-item">Bantul</a></li>
-                  <li><a class="dropdown-item">Gunungkidul</a></li>
-                </ul>
-              </div>
-            </li>
-            <!--Dropdown tanggal-->
-            <li class="nav-item" style="margin-left: 2rem;">
-              <input type="date" class="form-control" id="datepicker1" style="background-color: #f0eaea; color: #b02424; font-size: 15px;">
-            </li>
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
@@ -63,8 +40,8 @@
                   aria-expanded="false"
                   src="profil.png"
                   style="
-                    width: 40px;
-                    background-color: rgb(234, 179, 208);
+                    width: 50px;
+                    background-color: #b02424;
                     border-radius: 100%;
                     outline: whitesmoke solid;
                     padding: 0px;
@@ -81,8 +58,85 @@
       </div>
     </nav>
     <!-- Header Tutup -->
-
-    
-    
+    <!-- Card Daftar Donor Darah -->
+    <div class="container mt-5" style="background-color: #f0eaea; padding: 20px; border-radius: 10px;">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="background-color: #efc9c9; text-align: center; font-size: 20px; color: #b02424; font-weight: bold;">
+                        <h3>Daftar Donor Darah</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Form Daftar Donor Darah goes here -->
+                        <form>
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Masukkan email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="no_hp" class="form-label">Nomor HP</label>
+                                <input type="text" class="form-control" id="no_hp" placeholder="Masukkan nomor HP">
+                            </div>
+                            <div type="number" class="mb-3">
+                                <label for="usia" class="form-label">Usia</label>
+                                <input type="number" class="form-control" id="usia" placeholder="Masukkan usia">
+                            </div>
+                            <div type="number" class="mb-3">
+                                <label for="berat" class="form-label">Berat Badan (kg)</label>
+                                <input type="number" class="form-control" id="berat" placeholder="Masukkan berat badan">
+                            </div>
+                            <div type="number" class="mb-3">
+                                <label for="tinggi" class="form-label">Tinggi Badan (cm)</label>
+                                <input type="number" class="form-control" id="tinggi" placeholder="Masukkan tinggi badan">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenis_kelamin" class="form-label">Pernah Donor?</label>
+                                <select class="form-select" id="jenis_kelamin">
+                                    <option value="">Pilih</option>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
+                            </div>
+                            <!--kalau pernah donor, muncul pertanyaan ini-->
+                            <div type="number" class="mb-3">
+                                <label for="terakhir_donor" class="form-label">Sudah berapa bulan sejak donor terakhir?(bulan)</label>
+                                <input type="number" class="form-control" id="terakhir_donor" placeholder="Masukkan jumlah bulan">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                <select class="form-select" id="jenis_kelamin">
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="golongan_darah" class="form-label">Golongan Darah</label>
+                                <select class="form-select" id="golongan_darah">
+                                    <option value="">Pilih Golongan Darah</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenis_kelamin" class="form-label">Daftar Donor Darah</label>
+                                <select class="form-select" id="jenis_kelamin">
+                                    <option value="">Pilih Waktu dan Tempat Donor</option>
+                                    <option value="Sleman">Sleman</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424;">Daftar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

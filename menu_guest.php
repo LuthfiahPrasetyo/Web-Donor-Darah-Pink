@@ -1,7 +1,3 @@
-<?php
-echo "hai";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +11,7 @@ echo "hai";
 <!-- Header Nih -->
     <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a href="landingpage.php" class="navbar-brand me-2">
+        <a href="menu_guest.php" class="navbar-brand me-2">
           <img
             src="logo3.png"
             height="40"
@@ -59,6 +55,7 @@ echo "hai";
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
+              <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
@@ -87,8 +84,8 @@ echo "hai";
     <!-- Header Tutup -->
 
     <!--Ini buat kalo udah Donor Darah-->
-    <div class="card" style="margin: 20px;">
-      <p class="card-header" style="font-size: 14px;">Jadwal Anda</p>
+    <div class="card" style="margin: 10px 50px;">
+      <p class="card-header" style="font-size: 14px; background-color: #efc9c9;">Jadwal Anda</p>
       <div class="card-body">
         <p class="card-title" style="font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-heart-fill" viewBox="0 0 16 16" style="margin-right: 10px; font-size: 14px;">
           <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
@@ -103,14 +100,35 @@ echo "hai";
     </div>
 
     <!--Ini buat kalo BELUM Donor Darah-->
-    <div class="card" style="margin: 20px;">
-      <h5 class="card-header">Jadwal Anda</h5>
-      <div class="card-body">
-        <h5 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16" style="margin: 15px;">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
-        </svg>Anda belum mendaftarkan diri untuk donor darah. Silakan daftar terlebih dahulu!</h5>
-        <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: rgb(234, 179, 208); color: inherit; text-decoration: none;">Daftar Donor Darah</a>
-      </div>
+        <div class="card" style="margin: 10px 50px;" >
+          <h5 class="card-header" style="background-color: #efc9c9;">Jadwal Anda</h5>
+          <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
+            <h5 class="card-title" style="font-size: 18px;"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16" style="margin: 15px;">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+            </svg>Anda belum mendaftarkan diri untuk donor darah. Silakan daftar terlebih dahulu!</h5>
+            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color:#b02424; color: white; text-decoration: none; margin-right: 10px; margin-left: auto; align-items: end;">Daftar Donor Darah</a>
+          </div>
+        </div>
+
+        <!-- Jadwal  Donor Darah Nih -->
+    <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea; height: 100px;">
+        <table class="table table-striped mb-0">
+        <thead style="--bs-table-bg: #efc9c9;">
+            <tr>
+            <th scope="col">No</th>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Lokasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            </tr>
+        </tbody>
+        </table>
     </div>
+    <!-- Jadwal  Donor Darah Tutup -->
 </body>
 </html>

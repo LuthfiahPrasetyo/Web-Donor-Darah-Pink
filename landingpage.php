@@ -55,7 +55,7 @@
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
-            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: rgb(234, 179, 208); color: inherit; text-decoration: none;">Daftar Donor Darah</a>
+            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
@@ -64,17 +64,17 @@
                   aria-expanded="false"
                   src="profil.png"
                   style="
-                    width: 40px;
-                    background-color: rgb(234, 179, 208);
+                    width: 50px;
+                    background-color: #b02424;
                     border-radius: 100%;
                     outline: whitesmoke solid;
                     padding: 0px;
                   " 
                 />
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
-                  <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
-                  <li><a href="register.php" class="dropdown-item">Register</a></li>
+                  <li><a href="login_admin.php" class="dropdown-item">Masuk sebagai Admin</a></li>
+                  <li><a href="login_guest.php" class="dropdown-item">Masuk sebagai Guest</a></li>
+                  <li><a href="register.php" class="dropdown-item">Daftar Akun</a></li>
                 </ul>
               </div>
           </div>
@@ -89,7 +89,7 @@
             <tr>
             <th scope="col">No</th>
             <th scope="col">Tanggal</th>
-            <th scope="col">Lokasi</th>
+            <th scope="col">Location</th>
             </tr>
         </thead>
         <tbody>

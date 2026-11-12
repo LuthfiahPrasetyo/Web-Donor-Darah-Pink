@@ -11,7 +11,7 @@
 <!-- Header Nih -->
     <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a href="landingpage.php" class="navbar-brand me-2">
+        <a href="menu_admin.php" class="navbar-brand me-2">
           <img
             src="logo3.png"
             height="40"
@@ -55,6 +55,7 @@
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
+            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
@@ -63,8 +64,8 @@
                   aria-expanded="false"
                   src="profil.png"
                   style="
-                    width: 40px;
-                    background-color: rgb(234, 179, 208);
+                    width: 50px;
+                    background-color: #b02424;
                     border-radius: 100%;
                     outline: whitesmoke solid;
                     padding: 0px;
@@ -81,21 +82,30 @@
       </div>
     </nav>
     <!-- Header Tutup -->
-    <!-- Card Menu Admin -->
-    <div class="container mt-5" style="background-color: #f0eaea; padding: 20px; border-radius: 10px;">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header" style="background-color: #efc9c9; text-align: center; font-size: 20px; color: #b02424; font-weight: bold;">
-                        <h3>Menu Admin</h3>
-                    </div>
-                    <div class="card-body">
-                        <!-- Menu content goes here -->
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Jadwal  Donor Darah Nih -->
+    <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea; height: 100px;">
+        <table class="table table-striped mb-0">
+        <thead style="--bs-table-bg: #efc9c9; text-align: justify;">
+            <tr>
+            <th scope="col" style="width: 10%;">No</th>
+            <th scope="col" style="width: 25%;">Tanggal</th>
+            <th scope="col" style="width: 45%;">Lokasi</th>
+            <th scope="col" style="width: 20%;">Edit/Hapus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>       
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>
+                <button class="btn btn-primary">Edit</button> <button class="btn btn-danger" style="margin-left: 5px;">Hapus</button>
+            </td>       
+            </tr>
+        </tbody>
+        </table>
     </div>
+    <!-- Jadwal  Donor Darah Tutup -->
 
 </body>
 </html>

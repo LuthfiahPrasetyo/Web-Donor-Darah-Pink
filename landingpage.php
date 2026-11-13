@@ -1,3 +1,10 @@
+<?php
+include 'connect.php';
+
+$lokasi = $conn->query("select distinct lokasi from jadwal_donor");
+$tanggal = $conn->query("select distinct tanggal from jadwal_donor");
+$jadwal = $conn->query("select * from jadwal_donor");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,15 +49,38 @@
                   Lokasi
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item">Sleman</a></li>
-                  <li><a class="dropdown-item">Bantul</a></li>
-                  <li><a class="dropdown-item">Gunungkidul</a></li>
+                  <?php
+                  while($result = mysqli_fetch_object($lokasi)){
+                  ?>
+                  <li><a href="lokasi.php?lokasi=<?= $result->lokasi ?>" class="dropdown-item"><?= $result->lokasi ?></a></li>
+                  <?php
+                  }
+                  ?>
                 </ul>
               </div>
             </li>
             <!--Dropdown tanggal-->
             <li class="nav-item" style="margin-left: 2rem;">
-              <input type="date" class="form-control" id="datepicker1" style="background-color: #f0eaea; color: #b02424; font-size: 15px;">
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style="color: #b02424; font-size: 20px;"
+                >
+                  Tanggal
+                </button>
+                <ul class="dropdown-menu">
+                  <?php
+                  while($result = mysqli_fetch_object($tanggal)){
+                  ?>
+                  <li><a href="tanggal.php?tanggal=<?= $result->tanggal ?>" class="dropdown-item"><?= $result->tanggal ?></a></li>
+                  <?php
+                  }
+                  ?>
+                </ul>
+              </div>
             </li>
           </ul>
           <!-- Profile -->
@@ -83,21 +113,31 @@
     </nav>
     <!-- Header Tutup -->
     <!-- Jadwal  Donor Darah Nih -->
-    <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea; height: 100px;">
+    <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea;">
         <table class="table table-striped mb-0">
         <thead style="--bs-table-bg: #efc9c9;">
             <tr>
             <th scope="col">No</th>
             <th scope="col">Tanggal</th>
             <th scope="col">Location</th>
+            <th scope="col">Kuota Tersedia</th>
             </tr>
         </thead>
         <tbody>
+        <?php
+        $count = 1;
+        while($result = mysqli_fetch_object($jadwal)){
+        ?>
             <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <th scope="row"><?=$count?></th>
+            <td><?=$result->tanggal?></td>
+            <td><?=$result->lokasi?></td>
+            <td><?=$result->kuota?></td>
             </tr>
+        <?php
+        $count++;
+        }
+        ?>
         </tbody>
         </table>
     </div>

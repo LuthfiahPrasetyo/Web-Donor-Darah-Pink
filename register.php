@@ -1,3 +1,15 @@
+<?php
+include 'connect.php';
+require 'func.php';
+if(isset($_POST['register'])){
+  if(regist($_POST) > 0){
+    echo "<script>
+            alert('Akun berhasil kamu daftarin, horree HIU. Silahkan lanjut login');
+            document.location.href = 'login_guest.php';
+          </script>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,21 +80,25 @@
                         <h3>Register</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
                             <div class="form-group">
                                 <label for="name">Username</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                <input type="text" class="form-control" name="username" placeholder="Enter name">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                <input type="email" class="form-control" name="email" placeholder="Enter email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                                <input type="password" class="form-control" name="password" placeholder="Enter password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Konfirmasi Password</label>
+                                <input type="password" class="form-control" name="password2" placeholder="Enter password">
                             </div>
                             <!-- pokoknya di sini ada tombol register, kalo udh register menurutmu langsung mengarah ke halaman menu guest atau ke login guest lagi? bebas -->
-                            <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Register</button>
+                            <button type="submit" name="register" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Register</button>
                         </form>
                     </div>
                 </div>

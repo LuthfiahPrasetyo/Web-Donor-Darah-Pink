@@ -1,3 +1,16 @@
+<?php
+include 'connect.php';
+include 'func.php';
+
+if(isset($_POST['login'])){
+    if(login($_POST) > 0){
+    echo "<script>
+            alert('Berhasil loginn');
+            document.location.href = 'menu_guest.php';
+          </script>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,17 +81,17 @@
                         <h3>Login Guest</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter username">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
                             </div>
                             <!-- pokoknya di sini ada tombol login, kalo udh login langsung mengarah ke halaman menu guest -->
-                            <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Login</button>
+                            <button type="submit" name="login" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Login</button>
 
                             <div class="form-text" display="block" style="margin-top: 10px;">Forgot your password? Click <a href="forgot_pw.php" style="color: #b02424;">here</a> to reset it.</div>
 

@@ -68,14 +68,14 @@
                         <h3>Login Admin</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="proses_login_admin.php" method="post">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                <input type="text" class="form-control" name = "username" id="username" placeholder="Enter username">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                                <input type="password" class="form-control" name = "password" id="password" placeholder="Enter password">
                             </div>
                             <!-- pokoknya di sini ada tombol login, kalo udh login langsung mengarah ke halaman menu admin -->
                             <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Login</button>

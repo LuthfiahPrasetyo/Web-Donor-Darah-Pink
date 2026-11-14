@@ -37,7 +37,7 @@ function login($data)
     $password = $_POST["password"];
 
     $cek_username = mysqli_query($conn, "select username from users where username = '$username'");
-    $cek_password = mysqli_query($conn, "select password from users where password = '$password'");
+    $cek_password = mysqli_query($conn, "select password from users where username = '$username'");
 
     if(mysqli_num_rows($cek_username) == 1){
         if(mysqli_num_rows($cek_password) == 1){

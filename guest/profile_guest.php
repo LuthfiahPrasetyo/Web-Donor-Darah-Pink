@@ -1,3 +1,29 @@
+<?php
+session_start();
+include '../connect.php';
+
+$batas = 900;
+
+if ((time() - $_SESSION['last_activity'] > $batas)) {
+    echo "<script>
+          alert('Sesi sudh habiss, silahkan login ulang');
+        </script>";
+    session_unset();
+    session_destroy();
+    echo "<script>document.location.href = '../login/login_guest.php'</script>";
+}
+
+if( !(isset($_SESSION['id_user_global']))){
+  echo "<script>
+        alert('Silahkan login terlebih dahulu');
+        document.location.href = '../login/login_guest.php';
+      </script>";
+}
+
+$id_user_global = $_SESSION['id_user_global'];
+$data_profil = mysqli_query($conn, "select * from users where id_user = $id_user_global");
+$result = mysqli_fetch_object($data_profil);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,9 +75,7 @@
                   " 
                 />
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="../login/login_admin.php" class="dropdown-item">Login As Admin</a></li>
-                  <li><a href="../login/login_guest.php" class="dropdown-item">Login As Guest</a></li>
-                  <li><a href="../login/register.php" class="dropdown-item">Register</a></li>
+                  <li><a href="../login/logout.php" class="dropdown-item">Logout</a></li>
                 </ul>
               </div>
           </div>
@@ -68,42 +92,42 @@
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Nama</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->nama ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Email</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->email ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Nomor Telepon</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->nomor ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Usia</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->usia ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Berat Badan</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->bb ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Tinggi Badan</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->tb ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Jenis Kelamin</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->jenis_kelamin ?></td>
             </tr>
             <tr>
             <td style="width: 30%; background-color: #f0eaea;">Golongan Darah</td>
             <td style="width: 10%; background-color: #f0eaea;">:</td>
-            <td style="width: 60%; background-color: #f0eaea;">Otto</td>
+            <td style="width: 60%; background-color: #f0eaea;"><?= $result->golongan_darah ?></td>
             </tr>
  
             </table>

@@ -20,9 +20,9 @@ if( !(isset($_SESSION['id_user_global']))){
       </script>";
 }
 
-$id = $_SESSION['id_user_global'];
+$id_user_global = $_SESSION['id_user_global'];
 
-$jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_user = $id");
+$jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_user = $id_user_global");
 $lokasi = mysqli_query($conn, "select distinct lokasi from jadwal_donor");
 $tanggal = mysqli_query($conn, "select distinct tanggal from jadwal_donor");
 $jadwal = mysqli_query($conn, "select * from jadwal_donor");
@@ -99,7 +99,7 @@ $jadwal = mysqli_query($conn, "select * from jadwal_donor");
                   <?php
                   while($result = mysqli_fetch_object($tanggal)){
                   ?>
-                  <li><a href="lokasi_menu_guest.php?lokasi=<?= $result->tanggal ?>" class="dropdown-item"><?= $result->tanggal ?></a></li>
+                  <li><a href="tanggal_menu_guest.php?tanggal=<?= $result->tanggal ?>" class="dropdown-item"><?= $result->tanggal ?></a></li>
                   <?php
                   }
                   ?>
@@ -144,24 +144,28 @@ $jadwal = mysqli_query($conn, "select * from jadwal_donor");
     <!-- Header Tutup -->
 
     <!--Ini buat kalo udah Donor Darah-->
-    <?php if(mysqli_num_rows($jadwal_user) > 0){?>
+    <?php if(mysqli_num_rows($jadwal_user) > 0){
+      $jadwal_donor = mysqli_query($conn, "select jd.* from jadwal_donor jd join pendaftaran_donor pd on pd.id_jadwal = jd.id_jadwal join users u on u.id_user = pd.id_user where pd.id_user = $id_user_global"); 
+      
+      while($result = mysqli_fetch_object($jadwal_donor)){
+    ?>
     <div class="card" style="margin: 10px 50px;">
       <p class="card-header" style="font-size: 14px; background-color: #efc9c9;">Jadwal Anda</p>
       <div class="card-body">
         <p class="card-title" style="font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-heart-fill" viewBox="0 0 16 16" style="margin-right: 10px; font-size: 14px;">
           <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
-        </svg>11/11/2026 (Ini diisi Tanggalnya)</p>
+        </svg><?= $result->tanggal ?></p>
 
         <p class="card-title" style="font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
           <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.3 1.3 0 0 0-.37.265.3.3 0 0 0-.057.09V14l.002.008.016.033a.6.6 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.6.6 0 0 0 .146-.15l.015-.033L12 14v-.004a.3.3 0 0 0-.057-.09 1.3 1.3 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465s-2.462-.172-3.34-.465c-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411"/>
-        </svg>Embung Banjarharjo, Sleman(Ini diisi Lokasinya)</p>
+        </svg><?= $result->lokasi ?></p>
 
         <p class="card-text" style="font-size: 12px;">Pastikan Anda tidur minimal 6 jam, makan makanan bergizi, dan banyak minum air putih sebelum mendonor. <br>Hindari begadang, makanan berlemak tinggi, serta konsumsi obat-obatan tertentu agar kondisi tubuh prima dan proses donor berjalan lancar.</p>
       </div>
     </div>
 
     <!--Ini buat kalo BELUM Donor Darah-->
-    <?php }else{?>
+    <?php }}else{?>
         <div class="card" style="margin: 10px 50px;" >
           <h5 class="card-header" style="background-color: #efc9c9;">Jadwal Anda</h5>
           <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
@@ -173,21 +177,31 @@ $jadwal = mysqli_query($conn, "select * from jadwal_donor");
         </div>
         <?php } ?>
         <!-- Jadwal  Donor Darah Nih -->
-    <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea; height: 100px;">
+    <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea;">
         <table class="table table-striped mb-0">
         <thead style="--bs-table-bg: #efc9c9;">
             <tr>
             <th scope="col">No</th>
             <th scope="col">Tanggal</th>
             <th scope="col">Lokasi</th>
+            <th scope="col">Kuota</th>
             </tr>
         </thead>
         <tbody>
+            <?php
+            $count = 1;
+            while($result = mysqli_fetch_object($jadwal)){
+            ?>
             <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <th scope="row"><?= $count ?></th>
+            <td><?= $result->tanggal ?></td>
+            <td><?= $result->lokasi ?></td>
+            <td><?= $result->kuota ?></td>
             </tr>
+            <?php
+            $count++;
+            }
+            ?>
         </tbody>
         </table>
     </div>

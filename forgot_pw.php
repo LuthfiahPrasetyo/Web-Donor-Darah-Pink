@@ -1,3 +1,17 @@
+<?php
+include 'connect.php';
+include 'func.php';
+
+if(isset($_POST['reset'])){
+  if(reset_password($_POST)){
+    echo "<script>
+          alert('Password berhasir kamu reset. Silahkan login ulang!!');
+          document.location.href = 'login_guest.php';
+        </script>";
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,27 +82,27 @@
                         <h3>Reset Password</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                <input type="text" class="form-control" name="username" placeholder="Enter username">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                <input type="email" class="form-control" name="email" placeholder="Enter email">
                             </div>
 
                             <div class="form-group">
                                 <label for="password">New Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter new password">
+                                <input type="password" class="form-control" name="password" placeholder="Enter new password">
 
                             </div>
                             <div class="form-group">    
                                 <label for="confirm_password">Confirm New Password</label>
-                                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm new password">
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm new password">
                             </div>
                             <!-- pokoknya di sini ada tombol save, kalo udh save datanya ke update, terus langsung mengarah ke halaman login guest, kalo susah dihapus aja gapapa sih-->
-                            <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Save</button>
+                            <button type="submit" name="reset" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Save</button>
                         </form>
                     </div>
                 </div>

@@ -1,15 +1,16 @@
 <?php
-include 'connect.php';
-include 'func.php';
+include '../connect.php';
+include '../func.php';
 
-if(isset($_POST['login'])){
-    if(login($_POST) > 0){
+if(isset($_POST['reset'])){
+  if(reset_password($_POST)){
     echo "<script>
-            alert('Berhasil loginn');
-            document.location.href = 'menu_guest.php';
-          </script>";
+          alert('Password berhasir kamu reset. Silahkan login ulang!!');
+          document.location.href = '../login/login_guest.php';
+        </script>";
   }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,9 +25,9 @@ if(isset($_POST['login'])){
 <!-- Header Nih -->
     <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a href="landingpage.php" class="navbar-brand me-2">
+        <a href="../landing_page/landingpage.php" class="navbar-brand me-2">
           <img
-            src="logo3.png"
+            src="../assets/logo3.png"
             height="40"
             alt="Blood Logo"
             loading="lazy"
@@ -45,14 +46,14 @@ if(isset($_POST['login'])){
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
-            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
+            <a href="../guest/daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  src="profil.png"
+                  src="../assets/profil.png"
                   style="
                     width: 50px;
                     background-color: #b02424;
@@ -72,31 +73,36 @@ if(isset($_POST['login'])){
       </div>
     </nav>
     <!-- Header Tutup -->
-    <!-- Card Login Guest -->
+    <!-- Card Update Password -->
     <div class="container mt-5" style="background-color: #f0eaea; padding: 20px; border-radius: 10px;">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" style="background-color: #efc9c9; text-align: center; font-size: 20px; color: #b02424; font-weight: bold;">
-                        <h3>Login Guest</h3>
+                        <h3>Reset Password</h3>
                     </div>
                     <div class="card-body">
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter username">
+                                <input type="text" class="form-control" name="username" placeholder="Enter username">
                             </div>
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email">
                             </div>
-                            <!-- pokoknya di sini ada tombol login, kalo udh login langsung mengarah ke halaman menu guest -->
-                            <button type="submit" name="login" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Login</button>
 
-                            <div class="form-text" display="block" style="margin-top: 10px;">Forgot your password? Click <a href="forgot_pw.php" style="color: #b02424;">here</a> to reset it.</div>
+                            <div class="form-group">
+                                <label for="password">New Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Enter new password">
 
-                            <div class="form-text" display="block" style="margin-top: 10px;"> If you didn't have an account, click <a href="register.php" style="margin-top: 10px; color: #b02424;">here</a> to register.
                             </div>
+                            <div class="form-group">    
+                                <label for="confirm_password">Confirm New Password</label>
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm new password">
+                            </div>
+                            <!-- pokoknya di sini ada tombol save, kalo udh save datanya ke update, terus langsung mengarah ke halaman login guest, kalo susah dihapus aja gapapa sih-->
+                            <button type="submit" name="reset" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Save</button>
                         </form>
                     </div>
                 </div>

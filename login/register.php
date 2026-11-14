@@ -1,3 +1,15 @@
+<?php
+include '../connect.php';
+include '../func.php';
+if(isset($_POST['register'])){
+  if(regist($_POST) > 0){
+    echo "<script>
+            alert('Akun berhasil kamu daftarin, horree HIU. Silahkan lanjut login');
+            document.location.href = 'login_guest.php';
+          </script>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +23,9 @@
 <!-- Header Nih -->
     <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a href="landingpage.php" class="navbar-brand me-2">
+        <a href="../landing_page/landingpage.php" class="navbar-brand me-2">
           <img
-            src="logo3.png"
+            src="../assets/logo3.png"
             height="40"
             alt="Blood Logo"
             loading="lazy"
@@ -32,14 +44,14 @@
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
-            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
+            <a href="../guest/daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  src="profil.png"
+                  src="../assets/profil.png"
                   style="
                     width: 50px;
                     background-color: #b02424;
@@ -51,7 +63,6 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
                   <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
-                  <li><a href="register.php" class="dropdown-item">Register</a></li>
                 </ul>
               </div>
           </div>
@@ -59,26 +70,34 @@
       </div>
     </nav>
     <!-- Header Tutup -->
-    <!-- Card Login Admin -->
+    <!-- Card Register -->
     <div class="container mt-5" style="background-color: #f0eaea; padding: 20px; border-radius: 10px;">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" style="background-color: #efc9c9; text-align: center; font-size: 20px; color: #b02424; font-weight: bold;">
-                        <h3>Login Admin</h3>
+                        <h3>Register</h3>
                     </div>
                     <div class="card-body">
-                        <form action="proses_login_admin.php" method="post">
+                        <form action="" method="post">
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" name = "username" id="username" placeholder="Enter username">
+                                <label for="name">Username</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" name = "password" id="password" placeholder="Enter password">
+                                <input type="password" class="form-control" name="password" placeholder="Enter password">
                             </div>
-                            <!-- pokoknya di sini ada tombol login, kalo udh login langsung mengarah ke halaman menu admin -->
-                            <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Login</button>
+                            <div class="form-group">
+                                <label for="password">Konfirmasi Password</label>
+                                <input type="password" class="form-control" name="password2" placeholder="Enter password">
+                            </div>
+                            <!-- pokoknya di sini ada tombol register, kalo udh register menurutmu langsung mengarah ke halaman menu guest atau ke login guest lagi? bebas -->
+                            <button type="submit" name="register" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Register</button>
                         </form>
                     </div>
                 </div>

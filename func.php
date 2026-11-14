@@ -41,6 +41,10 @@ function login($data)
 
     if(mysqli_num_rows($cek_username) == 1){
         if(mysqli_num_rows($cek_password) == 1){
+            $id = mysqli_query($conn, "select id_user from users where username = '$username'");
+            $id_fetch = mysqli_fetch_object($id);
+            $_SESSION['id_user_global'] = $id_fetch->id_user; 
+            $_SESSION['last_activity'] = time();
             return true;
         }else{
             echo "<script>
@@ -62,7 +66,6 @@ function reset_password($data){
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-
     
     $cek_usn = mysqli_query($conn, "select username from users where username = '$username'");
     

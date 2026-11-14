@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../connect.php';
 $filter_lokasi = $_GET['lokasi'];
 
 $lokasi = $conn->query("select distinct lokasi from jadwal_donor");
@@ -24,7 +24,7 @@ $jadwal = $conn->query("select * from jadwal_donor where lokasi = '$filter_lokas
     <div class="container">
       <a href="menu_admin.php" class="navbar-brand me-2">
         <img
-          src="logo3.png"
+          src="../assets/logo3.png"
           height="40"
           alt="Blood Logo"
           loading="lazy"
@@ -84,14 +84,14 @@ $jadwal = $conn->query("select * from jadwal_donor where lokasi = '$filter_lokas
         </ul>
         <!-- Profile -->
         <div class="d-flex align-items-center">
-          <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
+          <a href="../guest/daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
           <div class="dropdown">
             <img
               class="btn dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              src="profil.png"
+              src="../assets/profil.png"
               style="
                     width: 50px;
                     background-color: #b02424;
@@ -100,9 +100,8 @@ $jadwal = $conn->query("select * from jadwal_donor where lokasi = '$filter_lokas
                     padding: 0px;
                   " />
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
-              <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
-              <li><a href="register.php" class="dropdown-item">Register</a></li>
+              <li><a href="profile_admin.php" class="dropdown-item">Profil</a></li>
+              <li><a href="../login/logout.php" class="dropdown-item">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -125,25 +124,25 @@ $jadwal = $conn->query("select * from jadwal_donor where lokasi = '$filter_lokas
       <tbody>
         <?php
         $count = 1;
-        while($result = mysqli_fetch_object($jadwal)){
+        while ($result = mysqli_fetch_object($jadwal)) {
         ?>
-        <tr>
-          <th scope="row"><?= $count ?></th>
-          <td><?= $result->tanggal ?></td>
-          <td><?= $result->lokasi ?></td>
-          <td><?= $result->kuota ?></td>
-          <td>
-            <a href="edit.php">
-              <button class="btn btn-primary">Edit</button>
-            </a>
-            <a href="hapus.php">
-              <button class="btn btn-danger" style="margin-left: 5px;">Hapus</button>
-            </a>
+          <tr>
+            <th scope="row"><?= $count ?></th>
+            <td><?= $result->tanggal ?></td>
+            <td><?= $result->lokasi ?></td>
+            <td><?= $result->kuota ?></td>
+            <td>
+              <a href="edit.php">
+                <button class="btn btn-primary">Edit</button>
+              </a>
+              <a href="hapus.php">
+                <button class="btn btn-danger" style="margin-left: 5px;">Hapus</button>
+              </a>
 
-          </td>
-        </tr>
+            </td>
+          </tr>
         <?php
-        $count++;
+          $count++;
         }
         ?>
       </tbody>

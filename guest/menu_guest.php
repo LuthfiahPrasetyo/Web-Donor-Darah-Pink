@@ -1,3 +1,34 @@
+<?php
+session_start();
+include '../connect.php';
+
+$batas = 900;
+
+if ((time() - $_SESSION['last_activity'] > $batas)) {
+    echo "<script>
+          alert('Sesi sudh habiss, silahkan login ulang');
+        </script>";
+    session_unset();
+    session_destroy();
+    echo "<script>document.location.href = '../login/login_guest.php'</script>";
+}
+
+if( !(isset($_SESSION['id_user_global']))){
+  echo "<script>
+        alert('Silahkan login terlebih dahulu');
+        document.location.href = '../login/login_guest.php';
+      </script>";
+}
+
+$id = $_SESSION['id_user_global'];
+
+$jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_user = $id");
+$lokasi = mysqli_query($conn, "select distinct lokasi from jadwal_donor");
+$tanggal = mysqli_query($conn, "select distinct tanggal from jadwal_donor");
+$jadwal = mysqli_query($conn, "select * from jadwal_donor");
+
+// $jadwal_donor = mysqli_query($conn, "select * from ")
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +44,7 @@
       <div class="container">
         <a href="menu_guest.php" class="navbar-brand me-2">
           <img
-            src="logo3.png"
+            src="../assets/logo3.png"
             height="40"
             alt="Blood Logo"
             loading="lazy"
@@ -42,16 +73,40 @@
                   Lokasi
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item">Sleman</a></li>
-                  <li><a class="dropdown-item">Bantul</a></li>
-                  <li><a class="dropdown-item">Gunungkidul</a></li>
+                  <?php
+                  while($result = mysqli_fetch_object($lokasi)){
+                  ?>
+                  <li><a href="lokasi_menu_guest.php?lokasi=<?= $result->lokasi ?>" class="dropdown-item"><?= $result->lokasi ?></a></li>
+                  <?php
+                  }
+                  ?>
                 </ul>
               </div>
             </li>
             <!--Dropdown tanggal-->
             <li class="nav-item" style="margin-left: 2rem;">
-              <input type="date" class="form-control" id="datepicker1" style="background-color: #f0eaea; color: #b02424; font-size: 15px;">
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style="color: #b02424; font-size: 20px;"
+                >
+                  Tanggal
+                </button>
+                <ul class="dropdown-menu">
+                  <?php
+                  while($result = mysqli_fetch_object($tanggal)){
+                  ?>
+                  <li><a href="lokasi_menu_guest.php?lokasi=<?= $result->tanggal ?>" class="dropdown-item"><?= $result->tanggal ?></a></li>
+                  <?php
+                  }
+                  ?>
+                </ul>
+              </div>
             </li>
+            
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
@@ -62,7 +117,7 @@
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  src="profil.png"
+                  src="../assets/profil.png"
                   style="
                     width: 40px;
                     background-color: rgb(234, 179, 208);
@@ -72,9 +127,14 @@
                   " 
                 />
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
-                  <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
-                  <li><a href="register.php" class="dropdown-item">Register</a></li>
+                  <?php if(isset($_SESSION['id_user_global'])){ ?>
+                  <li><a href="profile_guest.php" class="dropdown-item">Profil</a></li>
+                  <li><a href="../login/logout.php" class="dropdown-item">logout</a></li>
+                  <?php }else{ ?> 
+                  <li><a href="../login/login_admin.php" class="dropdown-item">Login As Admin</a></li>
+                  <li><a href="../login/login_guest.php" class="dropdown-item">Login As Guest</a></li>
+                  <li><a href="../login/register.php" class="dropdown-item">Register</a></li>
+                  <?php } ?>
                 </ul>
               </div>
           </div>
@@ -84,6 +144,7 @@
     <!-- Header Tutup -->
 
     <!--Ini buat kalo udah Donor Darah-->
+    <?php if(mysqli_num_rows($jadwal_user) > 0){?>
     <div class="card" style="margin: 10px 50px;">
       <p class="card-header" style="font-size: 14px; background-color: #efc9c9;">Jadwal Anda</p>
       <div class="card-body">
@@ -100,6 +161,7 @@
     </div>
 
     <!--Ini buat kalo BELUM Donor Darah-->
+    <?php }else{?>
         <div class="card" style="margin: 10px 50px;" >
           <h5 class="card-header" style="background-color: #efc9c9;">Jadwal Anda</h5>
           <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;" >
@@ -109,7 +171,7 @@
             <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color:#b02424; color: white; text-decoration: none; margin-right: 10px; margin-left: auto; align-items: end;">Daftar Donor Darah</a>
           </div>
         </div>
-
+        <?php } ?>
         <!-- Jadwal  Donor Darah Nih -->
     <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea; height: 100px;">
         <table class="table table-striped mb-0">

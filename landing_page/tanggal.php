@@ -1,5 +1,6 @@
 <?php
-include 'connect.php';
+include '../connect.php';
+
 $filter_tanggal = $_GET['tanggal'];
 
 $lokasi = $conn->query("select distinct lokasi from jadwal_donor");
@@ -21,9 +22,9 @@ $jadwal = $conn->query("select * from jadwal_donor where tanggal = '$filter_tang
   <!-- Header Nih -->
   <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
     <div class="container">
-      <a href="menu_admin.php" class="navbar-brand me-2">
+      <a href="landingpage.php" class="navbar-brand me-2">
         <img
-          src="logo3.png"
+          src="../assets/logo3.png"
           height="40"
           alt="Blood Logo"
           loading="lazy"
@@ -51,7 +52,7 @@ $jadwal = $conn->query("select * from jadwal_donor where tanggal = '$filter_tang
                 <?php
                 while ($result = mysqli_fetch_object($lokasi)) {
                 ?>
-                  <li><a href="lokasi_menu_admin.php?lokasi=<?= $result->lokasi ?>" class="dropdown-item"><?= $result->lokasi ?></a></li>
+                  <li><a href="lokasi.php?lokasi=<?= $result->lokasi ?>" class="dropdown-item"><?= $result->lokasi ?></a></li>
                 <?php
                 }
                 ?>
@@ -73,7 +74,7 @@ $jadwal = $conn->query("select * from jadwal_donor where tanggal = '$filter_tang
                 <?php
                 while ($result = mysqli_fetch_object($tanggal)) {
                 ?>
-                  <li><a href="tanggal_menu_admin.php?tanggal=<?= $result->tanggal ?>" class="dropdown-item"><?= $result->tanggal ?></a></li>
+                  <li><a href="tanggal.php?tanggal=<?= $result->tanggal ?>" class="dropdown-item"><?= $result->tanggal ?></a></li>
                 <?php
                 }
                 ?>
@@ -83,14 +84,14 @@ $jadwal = $conn->query("select * from jadwal_donor where tanggal = '$filter_tang
         </ul>
         <!-- Profile -->
         <div class="d-flex align-items-center">
-          <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
+          <a href="../guest/daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
           <div class="dropdown">
             <img
               class="btn dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              src="profil.png"
+              src="../assets/profil.png"
               style="
                     width: 50px;
                     background-color: #b02424;
@@ -99,9 +100,9 @@ $jadwal = $conn->query("select * from jadwal_donor where tanggal = '$filter_tang
                     padding: 0px;
                   " />
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
-              <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
-              <li><a href="register.php" class="dropdown-item">Register</a></li>
+              <li><a href="../login/login_admin.php" class="dropdown-item">Masuk sebagai Admin</a></li>
+              <li><a href="../login/login_guest.php" class="dropdown-item">Masuk sebagai Guest</a></li>
+              <li><a href="../login/register.php" class="dropdown-item">Daftar Akun</a></li>
             </ul>
           </div>
         </div>
@@ -112,43 +113,34 @@ $jadwal = $conn->query("select * from jadwal_donor where tanggal = '$filter_tang
   <!-- Jadwal  Donor Darah Nih -->
   <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea;">
     <table class="table table-striped mb-0">
-      <thead style="--bs-table-bg: #efc9c9; text-align: justify;">
+      <thead style="--bs-table-bg: #efc9c9;">
         <tr>
-          <th scope="col" style="width: 10%;">No</th>
-          <th scope="col" style="width: 20%;">Tanggal</th>
-          <th scope="col" style="width: 40%;">Lokasi</th>
-          <th scope="col" style="width: 10%;">Kuota Tersisa</th>
-          <th scope="col" style="width: 20%;">Edit/Hapus</th>
+          <th scope="col">No</th>
+          <th scope="col">Tanggal</th>
+          <th scope="col">Location</th>
+          <th scope="col">Kuota Tersedia</th>
         </tr>
       </thead>
       <tbody>
         <?php
         $count = 1;
-        while($result = mysqli_fetch_object($jadwal)){
+        while ($result = mysqli_fetch_object($jadwal)) {
         ?>
-        <tr>
-          <th scope="row"><?= $count ?></th>
-          <td><?= $result->tanggal ?></td>
-          <td><?= $result->lokasi ?></td>
-          <td><?= $result->kuota ?></td>
-          <td>
-            <a href="edit.php">
-              <button class="btn btn-primary">Edit</button>
-            </a>
-            <a href="hapus.php">
-              <button class="btn btn-danger" style="margin-left: 5px;">Hapus</button>
-            </a>
-
-          </td>
-        </tr>
+          <tr>
+            <th scope="row"><?= $count ?></th>
+            <td><?= $result->tanggal ?></td>
+            <td><?= $result->lokasi ?></td>
+            <td><?= $result->kuota ?></td>
+          </tr>
         <?php
-        $count++;
+          $count++;
         }
         ?>
       </tbody>
     </table>
   </div>
   <!-- Jadwal  Donor Darah Tutup -->
+  <!-- Kemarin kita bahas ini landing page isinya cuman ini sihhh-->
 
 </body>
 

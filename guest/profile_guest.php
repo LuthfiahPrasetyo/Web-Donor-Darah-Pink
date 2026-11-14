@@ -13,7 +13,7 @@
       <div class="container">
         <a href="menu_guest.php" class="navbar-brand me-2">
           <img
-            src="logo3.png"
+            src="../assets/logo3.png"
             height="40"
             alt="Blood Logo"
             loading="lazy"
@@ -39,7 +39,7 @@
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  src="profil.png"
+                  src="../assets/profil.png"
                   style="
                     width: 50px;
                     background-color: #b02424;
@@ -49,9 +49,9 @@
                   " 
                 />
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
-                  <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
-                  <li><a href="register.php" class="dropdown-item">Register</a></li>
+                  <li><a href="../login/login_admin.php" class="dropdown-item">Login As Admin</a></li>
+                  <li><a href="../login/login_guest.php" class="dropdown-item">Login As Guest</a></li>
+                  <li><a href="../login/register.php" class="dropdown-item">Register</a></li>
                 </ul>
               </div>
           </div>
@@ -62,7 +62,7 @@
     <!-- Card Profile Guest -->
     <div class="card" style="margin: 10px 250px;">
       <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <img src="profil.png" alt="Profile Image" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 20px; background-color: #b02424; border-radius: 100%; outline: whitesmoke solid; padding: 0px;">
+        <img src="../assets/profil.png" alt="Profile Image" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 20px; background-color: #b02424; border-radius: 100%; outline: whitesmoke solid; padding: 0px;">
         <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea; width: 100%; max-height: 400px; padding: 20px;">
           <table class="table table-borderless mb-0" style="font-size: 14px; color: #b02424; width: 100%;">
             <tr>

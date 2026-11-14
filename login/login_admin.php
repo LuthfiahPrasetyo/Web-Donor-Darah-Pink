@@ -11,9 +11,9 @@
 <!-- Header Nih -->
     <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
       <div class="container">
-        <a href="menu_admin.php" class="navbar-brand me-2">
+        <a href="../landing_page/landingpage.php" class="navbar-brand me-2">
           <img
-            src="logo3.png"
+            src="../assets/logo3.png"
             height="40"
             alt="Blood Logo"
             loading="lazy"
@@ -32,14 +32,14 @@
           </ul>
           <!-- Profile -->
           <div class="d-flex align-items-center">
-            <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
+            <a href="../guest/daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
               <div class="dropdown">
                 <img
                   class="btn dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  src="profil.png"
+                  src="../assets/profil.png"
                   style="
                     width: 50px;
                     background-color: #b02424;
@@ -49,7 +49,6 @@
                   " 
                 />
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="login_admin.php" class="dropdown-item">Login As Admin</a></li>
                   <li><a href="login_guest.php" class="dropdown-item">Login As Guest</a></li>
                   <li><a href="register.php" class="dropdown-item">Register</a></li>
                 </ul>
@@ -59,21 +58,31 @@
       </div>
     </nav>
     <!-- Header Tutup -->
-    <!-- Card Profile Admin -->
+    <!-- Card Login Admin -->
     <div class="container mt-5" style="background-color: #f0eaea; padding: 20px; border-radius: 10px;">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" style="background-color: #efc9c9; text-align: center; font-size: 20px; color: #b02424; font-weight: bold;">
-                        <h3>Profile Admin</h3>
+                        <h3>Login Admin</h3>
                     </div>
                     <div class="card-body">
-                        <!-- Profile content goes here -->
+                        <form action="proses_login_admin.php" method="post">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name = "username" id="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name = "password" id="password" placeholder="Enter password">
+                            </div>
+                            <!-- pokoknya di sini ada tombol login, kalo udh login langsung mengarah ke halaman menu admin -->
+                            <button type="submit" class="btn btn-primary" style="background-color: #b02424; border-color: #b02424; margin-top: 10px;">Login</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </body>
 </html>

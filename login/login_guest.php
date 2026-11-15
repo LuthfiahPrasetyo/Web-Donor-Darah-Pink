@@ -11,6 +11,25 @@ if(isset($_POST['login'])){
           </script>";
   }
 }
+
+<?php
+session_start();
+include '../connect.php';
+include '../func.php';
+
+if (isset($_POST['login'])) {
+    if (login_admin($_POST)) {
+        echo "<script>
+            alert('Berhasil login sebagai admin!');
+            document.location.href = '../admin/menu_admin.php';
+        </script>";
+    } else {
+        echo "<script>
+            document.location.href = '../login/login_admin.php';
+        </script>";
+    }
+}
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">

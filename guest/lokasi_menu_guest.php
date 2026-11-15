@@ -6,7 +6,7 @@ $batas = 900;
 
 if ((time() - $_SESSION['last_activity'] > $batas)) {
   echo "<script>
-          alert('Sesi sudh habiss, silahkan login ulang');
+          alert('Sesi sudah habis, silahkan login ulang');
         </script>";
   session_unset();
   session_destroy();
@@ -23,17 +23,14 @@ if (!(isset($_SESSION['id_user_global']))) {
 $id_user_global = $_SESSION['id_user_global'];
 $menu_lokasi = $_GET['lokasi'];
 
+$query_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user = $id_user_global");
+$data_user = mysqli_fetch_object($query_user);
+$foto_nav = (!empty($data_user->foto_profil)) ? $data_user->foto_profil : '../assets/profil.png';
+
 $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_user = $id_user_global");
 $lokasi = mysqli_query($conn, "select distinct lokasi from jadwal_donor");
 $tanggal = mysqli_query($conn, "select distinct tanggal from jadwal_donor");
 $jadwal = mysqli_query($conn, "select * from jadwal_donor where lokasi = '$menu_lokasi'");
-
-$id_user_global = $_SESSION['id_user_global'];
-
-$query_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user = $id_user_global");
-$data_user = mysqli_fetch_object($query_user);
-
-$jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_user = $id_user_global");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,37 +40,24 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <title>Document</title>
+  <title>Filter Lokasi</title>
 </head>
 
 <body style="margin: 0px; background-color: #f0eaea;">
-  <!-- Header Nih -->
   <nav class="navbar navbar-expand-lg" style="background-color: #efc9c9;">
     <div class="container">
       <a href="menu_guest.php" class="navbar-brand me-2">
-        <img
-          src="../assets/logo3.png"
-          height="40"
-          alt="Blood Logo"
-          loading="lazy"
-          style="margin-top: -1px;" />
+        <img src="../assets/logo3.png" height="40" alt="Blood Logo" loading="lazy" style="margin-top: -1px;" />
       </a>
 
       <div class="collapse navbar-collapse" id="navbarButtonsExample">
-        <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" style="align-self: center;">
             <b style="font-size: 25px; color: #b02424;">DONDARAHYUK</b>
           </li>
-          <!--Dropdown lokasi-->
           <li class="nav-item" style="margin-left: 2rem;">
             <div class="dropdown">
-              <button
-                class="btn dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style="color: #b02424; font-size: 20px;">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #b02424; font-size: 20px;">
                 Lokasi
               </button>
               <ul class="dropdown-menu">
@@ -87,15 +71,9 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
               </ul>
             </div>
           </li>
-          <!--Dropdown tanggal-->
           <li class="nav-item" style="margin-left: 2rem;">
             <div class="dropdown">
-              <button
-                class="btn dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style="color: #b02424; font-size: 20px;">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #b02424; font-size: 20px;">
                 Tanggal
               </button>
               <ul class="dropdown-menu">
@@ -109,24 +87,21 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
               </ul>
             </div>
           </li>
-
         </ul>
-        <!-- Profile -->
         <div class="d-flex align-items-center">
           <a href="daftardondar.php" class="btn-solid theme-primary" style="padding: 10px; border-radius: 10px; background-color: #f0eaea; color: inherit; color: #b02424; text-decoration: none; margin-right: 10px;">Daftar Donor Darah</a>
           <div class="dropdown">
-            <?php
-            $foto_nav = (!empty($data_user->foto_profil)) ? $data_user->foto_profil : '../assets/profil.png';
-            ?>
             <img
-              class="btn dropdown-toggle"
+              class="btn dropdown-toggle rounded-circle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               src="<?= htmlspecialchars($foto_nav); ?>"
               style="
-                    width: 40px;
-                    background-color: rgb(234, 179, 208);
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                    background-color: #b02424;
                     border-radius: 100%;
                     outline: whitesmoke solid;
                     padding: 0px;
@@ -134,7 +109,7 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
             <ul class="dropdown-menu dropdown-menu-end">
               <?php if (isset($_SESSION['id_user_global'])) { ?>
                 <li><a href="profile_guest.php" class="dropdown-item">Profil</a></li>
-                <li><a href="../login/logout.php" class="dropdown-item">logout</a></li>
+                <li><a href="../login/logout.php" class="dropdown-item">Logout</a></li>
               <?php } else { ?>
                 <li><a href="../login/login_admin.php" class="dropdown-item">Login As Admin</a></li>
                 <li><a href="../login/login_guest.php" class="dropdown-item">Login As Guest</a></li>
@@ -146,11 +121,9 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
       </div>
     </div>
   </nav>
-  <!-- Header Tutup -->
 
-  <!--Ini buat kalo udah Donor Darah-->
   <?php if (mysqli_num_rows($jadwal_user) > 0) {
-    $jadwal_donor = mysqli_query($conn, "select jd.* from jadwal_donor jd join pendaftaran_donor pd on pd.id_jadwal = jd.id_jadwal join users u on u.id_user = pd.id_user where pd.id_user = $id_user_global");
+    $jadwal_donor = mysqli_query($conn, "select jd.*, pd.id_daftar from jadwal_donor jd join pendaftaran_donor pd on pd.id_jadwal = jd.id_jadwal join users u on u.id_user = pd.id_user where pd.id_user = $id_user_global");
 
     while ($result = mysqli_fetch_object($jadwal_donor)) {
   ?>
@@ -166,10 +139,10 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
             </svg><?= $result->lokasi ?></p>
 
           <p class="card-text" style="font-size: 12px;">Pastikan Anda tidur minimal 6 jam, makan makanan bergizi, dan banyak minum air putih sebelum mendonor. <br>Hindari begadang, makanan berlemak tinggi, serta konsumsi obat-obatan tertentu agar kondisi tubuh prima dan proses donor berjalan lancar.</p>
+          
+          <a href="batal_dondar.php?id=<?= $result->id_daftar; ?>" class="btn btn-danger btn-sm mt-2" onclick="return confirm('Apakah Anda yakin ingin membatalkan pendaftaran donor ini?');">Batalkan Pendaftaran</a>
         </div>
       </div>
-
-      <!--Ini buat kalo BELUM Donor Darah-->
     <?php }
   } else { ?>
     <div class="card" style="margin: 10px 50px;">
@@ -182,7 +155,7 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
       </div>
     </div>
   <?php } ?>
-  <!-- Jadwal  Donor Darah Nih -->
+
   <div class="border rounded-3 overflow-auto" style="margin: 10px 50px; background-color: #f0eaea;">
     <table class="table table-striped mb-0">
       <thead style="--bs-table-bg: #efc9c9;">
@@ -210,8 +183,10 @@ $jadwal_user = mysqli_query($conn, "select * from pendaftaran_donor where id_use
         ?>
       </tbody>
     </table>
+    <div class="mt-4 p-3">
+      <a href="menu_guest.php" class="btn btn-secondary">Kembali ke Menu Utama</a>
+    </div>
   </div>
-  <!-- Jadwal  Donor Darah Tutup -->
 </body>
 
 </html>

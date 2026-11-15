@@ -33,8 +33,7 @@ $id_user_global = $_SESSION['id_user_global'];
 $query_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user = $id_user_global");
 $data = mysqli_fetch_object($query_user);
 
-$tempat = mysqli_query($conn, "SELECT * FROM jadwal_donor WHERE kuota > 0");
-
+$tempat = mysqli_query($conn, "SELECT * FROM jadwal_donor WHERE kuota > 0 AND id_jadwal NOT IN (SELECT id_jadwal FROM pendaftaran_donor WHERE id_user = $id_user_global)");
 $foto_nav = (!empty($data->foto_profil)) ? $data->foto_profil : '../assets/profil.png';
 ?>
 <!DOCTYPE html>

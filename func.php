@@ -212,6 +212,27 @@ function daftar($data)
     }
 }
 
+function batal_daftar($id_daftar)
+{
+    global $conn;
+    
+    // Ambil id_jadwal terlebih dahulu sebelum data dihapus untuk mengembalikan kuota
+    $query_cek = mysqli_query($conn, "SELECT id_jadwal FROM pendaftaran_donor WHERE id_daftar = $id_daftar");
+    if ($row = mysqli_fetch_object($query_cek)) {
+        $id_jadwal = $row->id_jadwal;
+        
+        // Hapus data pendaftaran
+        $query_hapus = mysqli_query($conn, "DELETE FROM pendaftaran_donor WHERE id_daftar = $id_daftar");
+        
+        if ($query_hapus) {
+            // Kembalikan/tambah kuota jadwal sebanyak 1
+            mysqli_query($conn, "UPDATE jadwal_donor SET kuota = kuota + 1 WHERE id_jadwal = $id_jadwal");
+            return true;
+        }
+    }
+    return false;
+}
+
 //admin
 function tambah_jadwal($data)
 {
